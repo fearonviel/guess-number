@@ -34,22 +34,18 @@ class MainHandler(BaseHandler):
         my_number = 27
         first_try = int(self.request.get("first_try"))
 
-        message_win = ""
-        message_low = ""
-        message_high = ""
-        message_error = ""
-        message_error2 = ""
+        message = ""
 
         if first_try > 50 or first_try < 1:
-            message_error = "I said between 1 and 50."
+            message = "I said between 1 and 50."
         elif first_try < my_number:
-            message_high = "Try higher."
+            message = "Try higher."
         elif first_try > my_number:
-            message_low = "Try lower."
+            message = "Try lower."
         elif first_try == my_number:
-            message_win = "Congratulations. " + str(my_number) + " is my number."
+            message = "Congratulations. " + str(my_number) + " is my number."
 
-        params = {"message_high": message_high, "message_low": message_low, "message_win": message_win, "message_error": message_error, "message_error2": message_error2}
+        params = {"message": message}
 
         return self.render_template("index.html", params=params)
 
